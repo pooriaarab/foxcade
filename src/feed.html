@@ -1,0 +1,42 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Generated Games</title>
+<link rel="stylesheet" href="ui.css"></head><body class="feed-page">
+<header class="feed-header">
+  <div>
+    <h1>Generated Games</h1>
+    <span id="mode" class="mode"></span>
+  </div>
+  <nav class="feed-actions">
+    <button id="more" type="button">Shuffle themes</button>
+    <button id="mute" type="button" aria-pressed="false">Sound on</button>
+    <a href="forge.html">Prompt your own</a>
+  </nav>
+</header>
+<main class="feed-main">
+  <section id="daily" class="daily-card" tabindex="0" role="button" aria-labelledby="daily-title">
+    <div class="daily-copy">
+      <span class="daily-kicker">Daily mode</span>
+      <h2 id="daily-title">Today's foxcade</h2>
+      <p id="daily-prompt"></p>
+      <p id="daily-meta"></p>
+      <p id="daily-streak"></p>
+    </div>
+    <div class="daily-actions">
+      <button id="daily-play" type="button">Play today</button>
+      <button id="daily-copy" type="button">Copy result</button>
+      <button id="daily-reminder" type="button" aria-pressed="false">Remind me daily</button>
+    </div>
+  </section>
+  <section id="grid" class="game-grid" aria-label="Generated games"></section>
+  <p id="status" class="status"></p>
+</main>
+<div id="overlay" class="play-overlay" hidden>
+  <div class="play-shell">
+    <button id="close" type="button" class="close-button">Close</button>
+    <button id="share" type="button" class="close-button">Copy link</button>
+    <canvas id="stage" width="400" height="600" tabindex="0"></canvas>
+    <canvas id="stage3d" width="400" height="600" tabindex="0" hidden></canvas>
+    <div id="stagemap" tabindex="0" hidden></div>
+    <div id="board" class="puzzle-board" tabindex="-1" hidden></div>
+  </div>
+</div>
+<script type="module" src="feed.js"></script></body></html>

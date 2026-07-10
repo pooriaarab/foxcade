@@ -1,0 +1,32 @@
+import runner from "./runner.js";
+import shooter from "./shooter.js";
+import breakout from "./breakout.js";
+import dodger from "./dodger.js";
+import whack from "./whack.js";
+import platformer from "./platformer.js";
+import maze from "./maze.js";
+import topdown from "./topdown.js";
+import driver from "./driver.js";
+import explore from "./explore.js";
+import snake from "./snake.js";
+import tetris from "./tetris.js";
+import bullethell from "./bullethell.js";
+import wordle from "./wordle.js";
+import pinpoint from "./pinpoint.js";
+import frogger from "./frogger.js";
+import twenty48 from "./twenty48.js";
+import pong from "./pong.js";
+import raycaster from "./raycaster.js";
+import tabshooter from "./tabshooter.js";
+import raymaze from "./raymaze.js";
+import raysurvive from "./raysurvive.js";
+import space3d from "./space3d.js";
+import sandbox from "./sandbox.js";
+import citymap from "./citymap.js";
+import worldmap from "./citymap-real.js";
+import life from "./life.js";
+import sand from "./sand.js";
+import rhythm from "./rhythm.js";
+export const registry = Object.fromEntries(
+  [runner, shooter, breakout, dodger, whack, platformer, maze, topdown, driver, explore, snake, tetris, bullethell, wordle, pinpoint, frogger, twenty48, pong, raycaster, tabshooter, raymaze, raysurvive, space3d, sandbox, citymap, worldmap, life, sand, rhythm].map(g => [g.key, g])
+);

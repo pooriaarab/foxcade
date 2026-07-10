@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Game Forge</title>
+<link rel="stylesheet" href="ui.css"></head><body>
+<header>
+  <input id="prompt" placeholder="Describe a game… e.g. fast neon space shooter with asteroids" autofocus>
+  <button id="go">Forge</button>
+  <button id="mute" type="button" aria-pressed="false">Sound on</button>
+  <span id="mode" class="mode"></span>
+</header>
+<main>
+  <canvas id="stage" width="400" height="600" tabindex="0"></canvas>
+  <canvas id="stage3d" width="400" height="600" tabindex="0" hidden></canvas>
+  <div id="stagemap" tabindex="0" hidden></div>
+  <div id="board" class="puzzle-board" tabindex="-1" hidden></div>
+  <div id="remix" hidden>
+    <button data-nudge="make it harder">Harder</button>
+    <button data-nudge="new color theme">New theme</button>
+    <button data-nudge="different characters">Different look</button>
+    <button data-nudge="">New game</button>
+    <button id="copy-link" type="button">Copy link</button>
+  </div>
+  <p id="status" class="status"></p>
+</main>
+<script type="module" src="forge.js"></script></body></html>

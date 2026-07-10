@@ -1,0 +1,36 @@
+Vendored third-party code
+==========================
+
+three.module.js
+  three.js r160 (https://threejs.org/)
+  Source: https://unpkg.com/three@0.160.0/build/three.module.js
+  License: MIT (Copyright 2010-2023 three.js authors)
+  https://github.com/mrdoob/three.js/blob/dev/LICENSE
+
+Why vendored: Manifest V3 forbids loading remote code, so three.js ships
+inside the extension package. It is lazy-imported only when a `type:"three"`
+game mounts (src/games/space3d.js), so base 2D games never load it.
+
+maplibre-gl-csp.js, maplibre-gl-csp-worker.js, maplibre-gl.css
+  MapLibre GL JS 4.7.1 (https://maplibre.org/) — CSP build
+  Source: https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl-csp.js
+          https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl-csp-worker.js
+          https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css
+  License: 3-Clause BSD (Copyright MapLibre contributors)
+  https://github.com/maplibre/maplibre-gl-js/blob/v4.7.1/LICENSE.txt
+
+Why vendored: Manifest V3 forbids loading remote CODE, so the MapLibre GL
+engine ships inside the extension package. It is lazy-imported only when the
+`type:"map"` game mounts (src/games/citymap-real.js), so no other game loads
+it. MapLibre renders REAL vector tiles with WebGL (3D buildings, road
+geometry). Its default build spins the tile worker from a blob: URL, which the
+strict/web-ext-dev extension CSP blocks — that is why we previously fell back to
+raster Leaflet. This is the CSP-friendly build: the worker is a SEPARATE FILE
+(maplibre-gl-csp-worker.js), and mount() calls
+maplibregl.setWorkerUrl(runtime.getURL("vendor/maplibre-gl-csp-worker.js")) so
+the worker loads same-origin ('self') and passes worker-src 'self' in dev AND
+packaged. The vendored //# sourceMappingURL= comments are stripped to avoid
+console 404s. NOTE: vector TILES (not code) are fetched at runtime from
+OpenFreeMap (https://openfreemap.org, free, no API key) — this is the one game
+that uses the network. A truly offline map would need bundled tiles; live
+tiles are the trade.

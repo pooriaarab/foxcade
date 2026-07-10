@@ -1,0 +1,15 @@
+Background scenery — all CC0 (public domain), no attribution required; credited here as good practice.
+
+Nature scenes (Kenney "Background Elements", CC0) — kenney.nl / https://opengameart.org/content/background-elements
+  forest.png    <- Samples/colored_forest.png
+  talltrees.png <- Samples/colored_talltrees.png
+  desert.png    <- Samples/colored_desert.png
+  hills.png     <- Samples/uncolored_hills.png
+
+Space scenes (Screaming Brain Studios "Seamless Space Backgrounds", CC0)
+  https://opengameart.org/content/seamless-space-backgrounds
+  Seamless, tileable. Downscaled from the 512x512 set to 256x256 to trim size
+  (uniform scale keeps them seamless).
+  nebula_purple.png <- Purple Nebula 1
+  nebula_blue.png   <- Blue Nebula 1
+  starfield.png     <- Starfield 1

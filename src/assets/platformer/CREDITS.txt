@@ -1,0 +1,8 @@
+Platformer Art Complete Pack by Kenney (kenney.nl), CC0 (public domain).
+https://opengameart.org/content/platformer-art-complete-pack-often-updated
+
+Files used:
+  tiles.png / tiles.xml  <- Base pack/Tiles/tiles_spritesheet.png + .xml
+  char.png  / char.xml   <- Extra animations and enemies/Spritesheets/alienGreen.png + .xml
+
+CC0: no attribution required; credit kept here as good practice.

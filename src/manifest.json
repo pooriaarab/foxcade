@@ -1,0 +1,55 @@
+{
+  "manifest_version": 3,
+  "name": "foxcade",
+  "version": "0.1.0",
+  "description": "Turn a prompt into a playable mini-game — generated on your device, private and free. 15+ games, a daily challenge, and 12 themes.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "foxcade@pooriaarab",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  },
+  "permissions": [
+    "alarms"
+  ],
+  "optional_permissions": [
+    "trialML",
+    "notifications",
+    "tabs",
+    "sessions"
+  ],
+  "_comment_network": "The 'worldmap' game (src/games/citymap-real.js) is the ONLY game that touches the network: it renders REAL vector map tiles from OpenFreeMap (https://openfreemap.org, free, no API key) with MapLibre GL (WebGL, 3D buildings + road geometry). MapLibre's default build runs its tile worker from a blob: URL, which the extension CSP blocks — so we ship the CSP build whose worker is a SEPARATE FILE (vendor/maplibre-gl-csp-worker.js) loaded same-origin via setWorkerUrl(runtime.getURL(...)), satisfying worker-src 'self'. Hence NO blob: in script-src; 'wasm-unsafe-eval' is for MapLibre's WASM. Every other game is fully local.",
+  "host_permissions": [
+    "https://tiles.openfreemap.org/*",
+    "https://*.openfreemap.org/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; object-src 'self'; connect-src 'self' https://tiles.openfreemap.org https://*.openfreemap.org; img-src 'self' data: blob: https://tiles.openfreemap.org https://*.openfreemap.org"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "action": {
+    "default_title": "Open foxcade",
+    "default_icon": {
+      "16": "assets/icon-16.png",
+      "32": "assets/icon-32.png",
+      "48": "assets/icon-48.png"
+    }
+  },
+  "icons": {
+    "16": "assets/icon-16.png",
+    "32": "assets/icon-32.png",
+    "48": "assets/icon-48.png",
+    "96": "assets/icon-96.png",
+    "128": "assets/icon-128.png"
+  }
+}

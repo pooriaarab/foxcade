@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="foxcade">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff9a2e"/>
+      <stop offset="1" stop-color="#f0472e"/>
+    </linearGradient>
+  </defs>
+  <!-- arcade badge -->
+  <rect x="8" y="8" width="112" height="112" rx="26" fill="url(#bg)"/>
+  <!-- fox ears -->
+  <path d="M34 30 L52 30 L40 12 Z" fill="#1c1230"/>
+  <path d="M94 30 L76 30 L88 12 Z" fill="#1c1230"/>
+  <!-- fox head -->
+  <path d="M28 40 Q64 32 100 40 L88 82 Q64 100 40 82 Z" fill="#1c1230"/>
+  <!-- eyes -->
+  <circle cx="50" cy="56" r="6" fill="#ff9a2e"/>
+  <circle cx="78" cy="56" r="6" fill="#ff9a2e"/>
+  <!-- play-triangle snout = games -->
+  <path d="M56 68 L78 79 L56 90 Z" fill="#ffffff"/>
+</svg>

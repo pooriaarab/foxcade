@@ -1,0 +1,519 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #101114;
+  color: #f4f2ea;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #101114;
+}
+
+header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 14px;
+  border-bottom: 1px solid #30333a;
+  background: #17191f;
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+  height: 42px;
+  border: 1px solid #464b55;
+  border-radius: 8px;
+  padding: 0 12px;
+  background: #0f1117;
+  color: #fff;
+  font-size: 15px;
+}
+
+button {
+  height: 42px;
+  border: 1px solid #5a6170;
+  border-radius: 8px;
+  padding: 0 14px;
+  background: #e6c75c;
+  color: #151515;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover { background: #f0d974; }
+
+.mode {
+  min-width: 90px;
+  color: #a9b0bd;
+  font-size: 13px;
+  text-align: right;
+}
+
+main {
+  width: min(100%, 560px);
+  margin: 0 auto;
+  padding: 18px 14px 24px;
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+
+#stage, #stage3d {
+  width: min(100%, 400px);
+  aspect-ratio: 2 / 3;
+  height: auto;
+  border: 1px solid #4d5361;
+  border-radius: 8px;
+  background: #111;
+  outline: none;
+  touch-action: manipulation;
+}
+
+#stage:focus, #stage3d:focus, #stagemap:focus { box-shadow: 0 0 0 3px #e6c75c55; }
+#stage3d[hidden], #stagemap[hidden] { display: none; }
+
+/* The real-map game renders into a plain div (MapLibre GL fills it with a WebGL canvas). */
+#stagemap {
+  width: min(100%, 400px);
+  aspect-ratio: 2 / 3;
+  height: auto;
+  border: 1px solid #4d5361;
+  border-radius: 8px;
+  background: #111;
+  outline: none;
+  overflow: hidden;
+}
+
+.three-hud {
+  width: min(100%, 400px);
+  color: #f4f2ea;
+  font: 16px monospace;
+  text-align: center;
+}
+
+.three-notice {
+  width: min(100%, 400px);
+  color: #c6cad3;
+  text-align: center;
+  font-size: 14px;
+  padding: 12px;
+}
+
+#remix {
+  width: min(100%, 400px);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+#remix button {
+  padding: 0 8px;
+  background: #252a33;
+  color: #f4f2ea;
+  font-size: 13px;
+}
+
+.status {
+  min-height: 22px;
+  margin: 0;
+  color: #c6cad3;
+  text-align: center;
+  font-size: 14px;
+}
+
+@media (max-width: 520px) {
+  header { flex-wrap: wrap; }
+  #go { flex: 0 0 auto; }
+  .mode { min-width: 0; flex: 1 0 100%; text-align: left; }
+  #remix { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.feed-page {
+  display: block;
+}
+
+.feed-header {
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.feed-header h1 {
+  margin: 0 0 4px;
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.feed-header .mode {
+  display: block;
+  min-width: 0;
+  text-align: left;
+}
+
+.feed-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.feed-actions a {
+  display: inline-flex;
+  align-items: center;
+  height: 42px;
+  border: 1px solid #5a6170;
+  border-radius: 8px;
+  padding: 0 14px;
+  background: #252a33;
+  color: #f4f2ea;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.feed-actions a:hover {
+  background: #303642;
+}
+
+.feed-main {
+  width: min(100%, 1180px);
+  padding: 18px;
+  justify-items: stretch;
+}
+
+.daily-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+  border: 1px solid #4f5562;
+  border-radius: 8px;
+  padding: 16px;
+  background: #20242c;
+  cursor: pointer;
+}
+
+.daily-card:hover,
+.daily-card:focus {
+  background: #272c36;
+}
+
+.daily-card:focus {
+  outline: 3px solid #e6c75c55;
+  outline-offset: 2px;
+}
+
+.daily-copy {
+  min-width: 0;
+}
+
+.daily-kicker {
+  display: block;
+  margin-bottom: 5px;
+  color: #e6c75c;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.daily-card h2 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  line-height: 1.15;
+}
+
+.daily-card p {
+  margin: 0;
+  color: #c6cad3;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.daily-card p + p {
+  margin-top: 4px;
+}
+
+.daily-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.daily-actions button {
+  min-width: 118px;
+  padding: 0 12px;
+}
+
+.daily-actions button + button {
+  background: #252a33;
+  color: #f4f2ea;
+}
+
+.daily-actions button + button:hover {
+  background: #303642;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(184px, 1fr));
+  gap: 14px;
+}
+
+.game-card {
+  height: auto;
+  min-height: 0;
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+  border: 1px solid #333844;
+  border-radius: 8px;
+  padding: 10px;
+  background: #17191f;
+  color: #f4f2ea;
+  text-align: left;
+}
+
+.game-card:hover {
+  background: #20242c;
+}
+
+.game-card canvas {
+  width: 100%;
+  max-width: 168px;
+  aspect-ratio: 2 / 3;
+  height: auto;
+  justify-self: center;
+  border: 1px solid #3d4350;
+  border-radius: 6px;
+  background: #111;
+}
+
+.game-card strong {
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+.game-card span {
+  min-height: 18px;
+  color: #c6cad3;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.play-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: #050609cc;
+}
+
+.play-overlay[hidden] {
+  display: none;
+}
+
+.play-shell {
+  display: grid;
+  gap: 10px;
+  justify-items: end;
+}
+
+.close-button {
+  background: #e6c75c;
+}
+
+.feed-page #stage,
+.feed-page #stage3d,
+.feed-page #stagemap {
+  width: min(90vw, 400px);
+  max-height: calc(100vh - 94px);
+}
+
+/* --- puzzles (DOM-rendered, turn-based) ------------------------------- */
+.puzzle-board {
+  width: min(92vw, 400px);
+  max-height: calc(100vh - 94px);
+  overflow-y: auto;
+  border: 1px solid #4d5361;
+  border-radius: 8px;
+  padding: 14px;
+  outline: none;
+}
+
+.puzzle-board[hidden] { display: none; }
+
+.puzzle-title {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.puzzle-status {
+  margin: 10px 0 0;
+  min-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.wordle-grid {
+  display: grid;
+  gap: 6px;
+  justify-content: center;
+}
+
+.wordle-row {
+  display: grid;
+  grid-template-columns: repeat(5, 48px);
+  gap: 6px;
+}
+
+.wordle-tile {
+  display: grid;
+  place-items: center;
+  height: 48px;
+  border: 2px solid #565b66;
+  border-radius: 4px;
+  font-size: 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.wordle-tile.filled { border-color: currentColor; }
+.wordle-tile.green,
+.wordle-key.green { background: #538d4e; border-color: #538d4e; color: #fff; }
+.wordle-tile.yellow,
+.wordle-key.yellow { background: #b59f3b; border-color: #b59f3b; color: #fff; }
+.wordle-tile.gray,
+.wordle-key.gray { background: #3a3a3c; border-color: #3a3a3c; color: #fff; }
+
+.wordle-keyboard {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.wordle-krow {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.wordle-key {
+  height: 46px;
+  min-width: 30px;
+  flex: 1 1 30px;
+  max-width: 42px;
+  padding: 0;
+  font-size: 14px;
+  background: #818384;
+  color: #fff;
+  border: none;
+}
+
+.wordle-key.wide { flex: 1 1 56px; max-width: 66px; font-size: 12px; }
+
+.pinpoint-clues {
+  margin: 0;
+  padding-left: 22px;
+  display: grid;
+  gap: 6px;
+  font-size: 18px;
+}
+
+.pinpoint-clue { line-height: 1.3; }
+
+.pinpoint-options {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.pinpoint-option {
+  height: 46px;
+  background: #252a33;
+  color: #f4f2ea;
+  font-size: 15px;
+}
+
+.pinpoint-option:hover:not(:disabled) { background: #303642; }
+.pinpoint-option:disabled { opacity: 0.5; cursor: default; }
+.pinpoint-option.wrong { background: #6b2b2b; }
+
+.puzzle-thumb {
+  width: 100%;
+  max-width: 168px;
+  aspect-ratio: 2 / 3;
+  justify-self: center;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid #3d4350;
+  border-radius: 6px;
+  padding: 14px;
+  background: #14161c;
+}
+
+.puzzle-thumb-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  align-self: center;
+}
+
+.puzzle-thumb-grid span {
+  aspect-ratio: 1;
+  border: 1px solid #3d4350;
+  border-radius: 3px;
+}
+
+.puzzle-thumb-label {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #c6cad3;
+}
+
+@media (max-width: 620px) {
+  .feed-header {
+    align-items: stretch;
+  }
+
+  .feed-actions {
+    width: 100%;
+  }
+
+  .feed-actions button,
+  .feed-actions a {
+    flex: 1;
+    justify-content: center;
+    padding: 0 10px;
+  }
+
+  .feed-main {
+    padding: 14px;
+  }
+
+  .daily-card {
+    grid-template-columns: 1fr;
+  }
+
+  .daily-actions {
+    justify-content: stretch;
+  }
+
+  .daily-actions button {
+    flex: 1 1 140px;
+  }
+}
