@@ -1,5 +1,10 @@
 # AGENTS.md
 
+## Design context
+
+Read `.agents/brand.md` before changing product identity, voice, or logo use.
+Read `.agents/design.md` before changing visual styles, layouts, or components.
+
 <!-- pr-standards:start -->
 
 ## Pull requests
